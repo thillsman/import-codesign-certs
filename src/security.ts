@@ -23,9 +23,6 @@ export async function installCertIntoTemporaryKeychain(
   if (p12FilePath === '') {
     throw new Error('p12FilePath must not be empty')
   }
-  if (p12Password === '') {
-    throw new Error('p12Password must not be empty')
-  }
   if (keychainPassword === '') {
     throw new Error('keychainPassword must not be empty')
   }
@@ -110,9 +107,7 @@ async function importPkcs12(
     '-T',
     '/usr/bin/codesign',
     '-T',
-    '/usr/bin/security',
-    '-P',
-    p12Password
+    '/usr/bin/security'
   ]
 
   await exec.exec('security', importArgs, options)
